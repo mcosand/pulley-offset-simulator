@@ -46,8 +46,8 @@ export const Canvas = observer(({ store }: { store: Store }) => {
       <line id="redrope" x1={store.anchors.red.x} y1={store.anchors.red.y} x2={store.pulleyEx.x} y2={store.pulleyEx.y} style={{ stroke: '#f00', strokeWidth: .3 }} />
 
       <circle id="pulley" cx={store.pulleyEx.x} cy={store.pulleyEx.y} r="2" style={{ fill: '#0f08' }} />
-      <circle id="red" className="drag" onPointerDown={onDown} cx={store.anchors.red.x} cy={store.anchors.red.y} r="2" style={{ fill: '#800' }} />
-      <circle id="black" className="drag" onPointerDown={onDown} cx={store.anchors.black.x} cy={store.anchors.black.y} r="2" style={{ fill: '#444' }} />
+      <circle id="red" className="drag" onPointerDown={onDown} cx={store.anchors.red.x} cy={store.anchors.red.y} r="3" style={{ fill: '#800' }} />
+      <circle id="black" className="drag" onPointerDown={onDown} cx={store.anchors.black.x} cy={store.anchors.black.y} r="3" style={{ fill: '#444' }} />
       {store.searchPoints.map(p => (<text key={p.l} x={p.x} y={p.y} style={{fontSize: '3px'}}>{p.l}</text>))}
     </svg>
   )
