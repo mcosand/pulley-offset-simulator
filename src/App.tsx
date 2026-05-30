@@ -15,6 +15,7 @@ const Content = observer(({ store }: { store: Store }) => {
       </div>
       <div>Angle: {store.pulley?.angle?.toFixed(1)}&deg;</div>
       <div>Deflection: {store.pulley?.deflection?.toFixed(1)}&deg;</div>
+      <div>Offset tension: {(store.redTension/1000).toFixed(2)}kN</div>
     </div>
   )
 })

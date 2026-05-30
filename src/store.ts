@@ -31,6 +31,7 @@ export class Store {
       }
   @observable accessor pulley: PulleyCoords|undefined = undefined
   @observable accessor redLength: number = 20
+  @observable accessor blackTension: number = 2000
   @observable accessor selected: AnchorName|undefined = undefined
 
   @observable accessor searchPoints: Array<Coord & { l: string }> = []
@@ -42,6 +43,14 @@ export class Store {
       () => this.pulley = this.solvePulleyLocation(),
       { fireImmediately: true }
     )
+  }
+
+  @computed
+  get redTension() {
+    if (this.pulley?.deflection) {
+      return this.blackTension * Math.sin((this.pulley.deflection / 2)/180*Math.PI);
+    }
+    return 0;
   }
 
   @computed
@@ -66,7 +75,7 @@ export class Store {
 
   @computed
   get bisectEnd() {
-    if (this.pulley?.angle === undefined) return undefined
+    if (this.pulley?.angle === undefined || !this.redLength) return undefined
     return {
       x: this.pulley.x + this.bisectLength * Math.cos(this.pulley.angle/180*Math.PI),
       y: this.pulley.y - this.bisectLength * Math.sin(this.pulley.angle/180*Math.PI),
