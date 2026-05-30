@@ -62,8 +62,15 @@ body {
   margin: 0;
 }
 
+svg {
+  touch-action: pan-y;
+}
 svg * {
   pointer-events: none;
+}
+svg .drag {
+  pointer-events: auto;
+  touch-action: none;
 }
 
 h1,
