@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx'
+import { action, computed, makeObservable, observable, reaction } from 'mobx'
 
 const EPSILON = 0.01
 
@@ -15,32 +15,28 @@ export interface PulleyCoords extends Coord {
 }
 
 interface Anchors {
-  red: Coord;
-  black: Coord;
+  red: Coord
+  black: Coord
 }
-type AnchorName = keyof Anchors;
+type AnchorName = keyof Anchors
 
 export class Store {
   @observable accessor searchPointsVisible = false
   @observable accessor bisectLength = 20
   @observable accessor showGuides: boolean = true
 
-  @observable accessor anchors: Anchors;
-  @observable accessor pulley: PulleyCoords|undefined;
-  @observable accessor redLength: number;
-  @observable accessor selected: AnchorName|undefined = undefined;
-
-  @observable accessor searchPoints: Array<Coord & { l: string }> = [];
-
-  constructor() {
-    makeObservable(this)
-    runInAction(() => {
-      this.anchors = {
+  @observable accessor anchors: Anchors = {
         red: { x: 5, y: 5 },
         black: { x: 100, y: 6 },
       }
-      this.redLength = 20;
-    })
+  @observable accessor pulley: PulleyCoords|undefined = undefined
+  @observable accessor redLength: number = 20
+  @observable accessor selected: AnchorName|undefined = undefined
+
+  @observable accessor searchPoints: Array<Coord & { l: string }> = []
+
+  constructor() {
+    makeObservable(this)
     reaction(
       () => [ this.redLength, this.anchors.red, this.anchors.black ],
       () => this.pulley = this.solvePulleyLocation(),
