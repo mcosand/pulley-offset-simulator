@@ -48,7 +48,7 @@ export class Store {
   @computed
   get redTension() {
     if (this.pulley?.deflection) {
-      return this.blackTension * Math.sin((this.pulley.deflection / 2)/180*Math.PI);
+      return this.blackTension * 2 * Math.sin((this.pulley.deflection / 2)/180*Math.PI);
     }
     return 0;
   }
