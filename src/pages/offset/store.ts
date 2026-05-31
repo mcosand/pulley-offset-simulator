@@ -18,7 +18,7 @@ type AnchorName = keyof Anchors
 
 export class Store implements SimUIStore {
   @observable accessor sizePx = { x: 800, y: 600 }
-  @observable accessor sizeMeters = { x: 100, y: 100 }
+  @observable accessor sizeMeters = { x: 100, y: 75 }
 
   @observable accessor searchPointsVisible = false
   @observable accessor bisectLength = 20
@@ -26,7 +26,7 @@ export class Store implements SimUIStore {
 
   @observable accessor anchors = {
         red: { color: '#800', center: { x: 5, y: 5 } },
-        black: { color: '#222', center: { x: 100, y: 6 }},
+        black: { color: '#222', center: { x: 80, y: 6 }},
       }
 
   @observable accessor pulley: PulleyCoords|undefined = undefined

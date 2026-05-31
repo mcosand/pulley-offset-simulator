@@ -1,6 +1,7 @@
 import { createHashHistory, createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
 import Home from './pages/Home'
 import OffsetView from './pages/offset/View'
+import GuidingLineView from './pages/guiding-line/View'
 
 const rootRoute = createRootRoute()
 const getParentRoute = () => rootRoute
@@ -15,6 +16,11 @@ const routeTree = rootRoute.addChildren([
     getParentRoute,
     path: '/offset',
     component: OffsetView
+  }),
+  createRoute({
+    getParentRoute,
+    path: '/guiding-line',
+    component: GuidingLineView
   }),
 ])
 

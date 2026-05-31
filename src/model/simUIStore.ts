@@ -40,6 +40,7 @@ export interface CircleGuide {
 export interface LineGuide extends Line {
   type: 'line'
   dash?: string
+  color?: string
 }
 
 export type Guide = CircleGuide|LineGuide

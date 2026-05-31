@@ -35,18 +35,17 @@ export const Canvas = observer(({ store }: { store: SimUIStore }) => {
     store.drop();
   }
 
-  console.log(JSON.parse(JSON.stringify(store.ropes)))
   return (
     <svg width={store.sizePx.x} height={store.sizePx.y} style={{ border: 'solid 1px #444', backgroundColor:'#fff' }}
     onPointerMove={move} onPointerUp={up} viewBox={`0 0 ${store.sizeMeters.x} ${store.sizeMeters.y}`}>
+      {store.ropes.map(r => (
+        <line key={r.id} x1={r.end1.x} y1={r.end1.y} x2={r.end2.x} y2={r.end2.y} style={{ stroke: r.color, strokeWidth: .4 }} />  
+      ))}
       {store.guides?.filter(f => f.type === 'circle').map(g => (
           <circle key={g.id} cx={g.center.x} cy={g.center.y} r={g.radius} style={{ fill: 'transparent', stroke: '#0003', strokeWidth: .2 }} />
         ))}
       {store.guides?.filter(f => f.type === 'line').map(g => (
-          <line key={g.id} x1={g.end1.x} y1={g.end1.y} x2={g.end2.x} y2={g.end2.y} style={{ stroke: '#0004', strokeWidth: .2, strokeDasharray: g.dash }} />
-        ))}
-      {store.ropes.map(r => (
-        <line key={r.id} x1={r.end1.x} y1={r.end1.y} x2={r.end2.x} y2={r.end2.y} style={{ stroke: r.color, strokeWidth: .4 }} />  
+          <line key={g.id} x1={g.end1.x} y1={g.end1.y} x2={g.end2.x} y2={g.end2.y} style={{ stroke: g.color ?? '#0004', strokeWidth: .2, strokeDasharray: g.dash }} />
       ))}
 
       {store.pulleys.map(p => (

@@ -14,6 +14,11 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      {
+        rules: {
+          '@typescript-eslint/no-unused-vars': ["error", { "ignoreRestSiblings": true }]
+        }
+      }
     ],
     languageOptions: {
       globals: globals.browser,
